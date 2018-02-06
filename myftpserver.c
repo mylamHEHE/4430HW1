@@ -54,7 +54,7 @@ struct message_s makepack(int type,char *length)
 	return msg;
 }
 
-int main(int argc, char** argv){
+int main(int argc, char* argv[]){
 	int sd=socket(AF_INET,SOCK_STREAM,0);
 	long val=1;
 	if(setsockopt(sd,SOL_SOCKET,SO_REUSEADDR,&val,sizeof(long))==-1)
@@ -67,7 +67,7 @@ int main(int argc, char** argv){
 	memset(&server_addr,0,sizeof(server_addr));
 	server_addr.sin_family=AF_INET;
 	server_addr.sin_addr.s_addr=htonl(INADDR_ANY);
-	server_addr.sin_port=htons(PORT);
+	server_addr.sin_port=htons(atoi(argv[1]));
 	if(bind(sd,(struct sockaddr *) &server_addr,sizeof(server_addr))<0){
 		printf("bind error: %s (Errno:%d)\n",strerror(errno),errno);
 		exit(0);
@@ -88,7 +88,7 @@ int main(int argc, char** argv){
 		struct message_s sendmsg;
 		
 		if((len=recvn(client_sd,&revmsg,sizeof(revmsg)))<0){
-			printf("receive error: %s (Errno:%d)\n", strerror(errno),errno);
+			printf("receive error1: %s (Errno:%d)\n", strerror(errno),errno);
 			exit(0);
 		}
 		if(sizeof(revmsg)!=0){
@@ -101,13 +101,13 @@ int main(int argc, char** argv){
 				sendmsg=makepack(LIST_REQUEST,sendliststring);
 				if(len=sendn(client_sd,&sendmsg,sizeof(sendmsg))<0)
 				{
-					printf("receive error: %s (Errno:%d)\n", strerror(errno),errno);fflush(stdout);
+					printf("receive error2: %s (Errno:%d)\n", strerror(errno),errno);fflush(stdout);
 					exit(0);
 
 				}
 				if(len=sendn(client_sd,sendliststring,sizeof(sendliststring))<0)
 				{
-					printf("receive error: %s (Errno:%d)\n", strerror(errno),errno);fflush(stdout);
+					printf("receive error3: %s (Errno:%d)\n", strerror(errno),errno);fflush(stdout);
 					exit(0);
 
 				}

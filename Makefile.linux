@@ -1,25 +1,25 @@
 CC = gcc
 LIB =
 
-all: myftpshare server client 
+all: myftp myftpserver myftpclient 
 
-myftpshare: myftpshare.c
-	${CC} -c myftpshare.c ${LIB}
+myftp: myftp.c
+	${CC} -c myftp.c ${LIB}
 	
 
-server: server.c
-	${CC} -c server.c ${LIB}
-	${CC} -o server myftpshare.o server.o ${LIB}
+myftpserver: myftpserver.c
+	${CC} -c myftpserver.c ${LIB}
+	${CC} -o myftpserver myftp.o myftpserver.o ${LIB}
 
-client: client.c
-	${CC} -c client.c ${LIB}
-	${CC} -o client myftpshare.o client.o ${LIB}
+myftpclient: myftpclient.c
+	${CC} -c myftpclient.c ${LIB}
+	${CC} -o myftpclient myftp.o myftpclient.o ${LIB}
 
 
 
 clean:
-	rm server
-	rm client
-	rm myftpshare.o
-	rm server.o
-	rm client.o		
+	rm myftpserver
+	rm myftpclient
+	rm myftp.o
+	rm myftpserver.o
+	rm myftpclient.o		
