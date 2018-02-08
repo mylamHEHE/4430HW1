@@ -1,3 +1,8 @@
+/*
+Group 40
+LAM Ming Yuen 1155083016
+LEE Ho Yin 1155085665
+*/
 # include <unistd.h>
 # include <string.h>
 # include <errno.h>
@@ -10,7 +15,8 @@
 #define LIST_REQUEST 0xA1
 #define LIST_REPLY 0xA2
 #define GET_REQUEST 0xB1
-#define GET_REPLY 0xB2
+#define GET_REPLY_EXIST_FILE 0xB2
+#define GET_REPLY_NOT_EXIST 0xB3
 #define PUT_REQUEST 0xC1
 #define PUT_REPLY 0xC2
 #define FILE_DATA 0xFF

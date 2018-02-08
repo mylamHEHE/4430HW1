@@ -1,6 +1,11 @@
+/*
+Group 40
+LAM Ming Yuen 1155083016
+LEE Ho Yin 1155085665
+*/
 #include "myftp.h"
-# include <stdio.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 int sendn(int sd,void *buf,int buf_len)
 {
 	int n_left=buf_len;

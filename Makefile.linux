@@ -1,5 +1,5 @@
 CC = gcc
-LIB =
+LIB = -pthread
 
 all: myftp myftpserver myftpclient 
 
